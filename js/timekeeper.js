@@ -200,6 +200,22 @@ $(function(){
 		show_time();
 	}
   $('[data-toggle="tooltip"]').tooltip();
+
+
+//// C.F : https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Animations/Tips
+    function flashBackground(wnd){
+	var flash = document.timerSetting.flashbkgnd.checked;
+	if (flash) {
+	    wnd.document.getElementById("flashbody").className = "flashbase";
+	    wnd.requestAnimationFrame(function(time) {
+		wnd.requestAnimationFrame(function(time) {
+		wnd.document.getElementById("flashbody").className = "flashbase flash";
+		});
+	    });
+	}
+    }
+
+
 	$.timer(100,function(timer){
 			resize_display();
 			if($('.nav li#start').hasClass('active')){
