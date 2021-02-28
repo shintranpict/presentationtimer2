@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+var time2011 = new Date('2011/1/1 00:00:00');
 $(function(){
 	var loadedcss = '';
 	$('#time1').val('15:00');
@@ -203,7 +204,8 @@ $(function(){
 
 
 //// C.F : https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Animations/Tips
-    function flashBackground(wnd){
+    function flashBackground(){
+        var wnd=window;
 	var flash = document.timerSetting.flashbkgnd.checked;
 	if (flash) {
 	    wnd.document.getElementById("flashbody").className = "flashbase";
@@ -216,37 +218,38 @@ $(function(){
     }
 
 
-	$.timer(100,function(timer){
-			resize_display();
-			if($('.nav li#start').hasClass('active')){
-				update_time();
+    $.timer(100,function(timer){
+	resize_display();
+	if($('.nav li#start').hasClass('active')){
+	    update_time();
 
-				var cur_time= new Date();
-				if(last_time != null){
-					var time1 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time1').val()))-(new Date('2011/1/1 00:00:00'))));
-					var time2 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time2').val()))-(new Date('2011/1/1 00:00:00'))));
-					var time3 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time3').val()))-(new Date('2011/1/1 00:00:00'))));
+	    var cur_time= new Date();
+	    if(last_time != null){
+		// var time1 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time1').val()))-(new Date('2011/1/1 00:00:00'))));
+		var time1 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time1').val()))-time2011 ));
+		var time2 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time2').val()))-time2011 ));
+		var time3 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time3').val()))-time2011 ));
 
-					if((last_time < time1 && time1 <= cur_time) || (last_time==time1 && cur_time==time1)){
-						changePhaseClass('1');
-						audio_chime1.currentTime = 0;
-						audio_chime1.play();
-					}
+		if((last_time < time1 && time1 <= cur_time) || (last_time==time1 && cur_time==time1)){
+			changePhaseClass('1');
+			audio_chime1.currentTime = 0;
+			audio_chime1.play();
+		}
 
-					if((last_time < time2 && time2 <= cur_time) || (last_time==time2 && cur_time==time2)){
-						changePhaseClass('2');
-						audio_chime2.currentTime = 0;
-						audio_chime2.play();
-					}
+		if((last_time < time2 && time2 <= cur_time) || (last_time==time2 && cur_time==time2)){
+			changePhaseClass('2');
+			audio_chime2.currentTime = 0;
+			audio_chime2.play();
+		}
 
-					if((last_time < time3 && time3 <= cur_time) || (last_time==time3 && cur_time==time3)){
-						changePhaseClass('3');
-						audio_chime3.currentTime = 0;
-						audio_chime3.play();
-					}
+		if((last_time < time3 && time3 <= cur_time) || (last_time==time3 && cur_time==time3)){
+			changePhaseClass('3');
+			audio_chime3.currentTime = 0;
+			audio_chime3.play();
+		}
 
-				}
-				last_time=cur_time;
-			}
-	})
+	    }
+	    last_time=cur_time;
+	}
+    })
 });
