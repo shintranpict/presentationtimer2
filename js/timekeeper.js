@@ -169,11 +169,11 @@ $(function(){
 		$('#time').css('font-size',theight+'px');
 		$('#time').css('line-height',theight+'px');
 		var sheight=theight/6;
-		$('#state').css('top',height/2-theight/2-sheight/2);
+		$('#state').css('top',(height/2-theight/2)*0.9-sheight/2);
 		$('#state').css('font-size',sheight+'px');
 		$('#state').css('line-height',sheight+'px');
 		var iheight=sheight;
-		$('#info').css('top',height/2+theight/2);
+		$('#info').css('top',height/2+theight/2*1.1);
 		$('#info').css('font-size',iheight+'px');
 		$('#info').css('line-height',iheight+'px');
 	}
