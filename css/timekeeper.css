@@ -25,7 +25,7 @@ THE SOFTWARE.
 html,body{
 	height:100%;
 	overflow: hidden;
-	background: black;
+	background: white;
 	font-size:16px;
 }
 
@@ -108,7 +108,7 @@ html,body{
 
 #info{
 	font-weight: bold;
-	color: white;
+	color: black;
         // background: #55ff88;
 	width:100%;
 	position: absolute;
