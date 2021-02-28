@@ -23,13 +23,22 @@ THE SOFTWARE.
 */
 
 var time2011 = new Date('2011/1/1 00:00:00');
+var time_inner = new Date('2011/1/1 00:00:00');
+
 $(function(){
-	var loadedcss = '';
-	$('#time1').val('15:00');
-	$('#time2').val('20:00');
-	$('#time3').val('25:00');
-	$('#info').html("Click to edit this message.");
-	function getHashParams() {
+    var loadedcss = '';
+    $('#time1').val('15:00');
+    $('#time2').val('20:00');
+    $('#time3').val('25:00');
+    $('#info').html("Click to edit this message.");
+    $('#cur_sec').html('1000000000');
+    $('#time1sec').html('1000000000');
+
+    var time1;
+    var time2;
+    var time3;
+
+  function getHashParams() {
     var hashParams = {};
     var e,
       a = /\+/g, // Regex for replacing addition symbol with a space
@@ -127,7 +136,8 @@ $(function(){
 	});
 	changeStateClass('standby');
 	changePhaseClass('0');
-	var start_time=new Date();
+	// var start_time=new Date();
+	var start_time = new Date().getTime();
 	var last_time;
 	$('.nav #start').click(function (event){
 		event.preventDefault();
@@ -138,7 +148,8 @@ $(function(){
 		$('.nav li#start').addClass('active');
 		$('#state').html('');
 		changeStateClass('start');
-		start_time = new Date((new Date()).getTime() - (time_inner-(new Date('2011/1/1 00:00:00'))));
+		start_time = new Date().getTime();
+		// start_time = new Date((new Date()).getTime() - (time_inner-(new Date('2011/1/1 00:00:00'))));
 		last_time = null;
 		audio_chime1.load();
 		audio_chime2.load();
@@ -177,6 +188,19 @@ $(function(){
 		$('#info').css('top',height/2+theight/2*1.1);
 		$('#info').css('font-size',iheight+'px');
 		$('#info').css('line-height',iheight+'px');
+
+		iheight=sheight/2;
+		iheight=sheight;
+		var toppos = height/2+theight/2*1.1 + iheight*3;
+		$('#cur_sec').css('top', toppos);
+		$('#cur_sec').css('font-size',iheight+'px');
+		$('#cur_sec').css('line-height',iheight+'px');
+
+		toppos = height/2+theight/2*1.1 + iheight*4;
+		$('#time1sec').css('top', toppos);
+		$('#time1sec').css('font-size',iheight+'px');
+		$('#time1sec').css('line-height',iheight+'px');
+
 	}
 	$(window).bind("resize", resize_display);
 
@@ -193,11 +217,12 @@ $(function(){
 		$('#time').html(time_str);
 	}
 
-	var time_inner = new Date('2011/1/1 00:00:00');
 	function update_time(){
-		var cur_time= new Date();
-		var e=new Date((new Date('2011/1/1 00:00:00')).getTime()+(cur_time-start_time));
-		time_inner=e;
+		// var cur_time= new Date();
+		var cur_time = new Date().getTime();
+		var elap = cur_time - start_time;
+		// var e=new Date((new Date('2011/1/1 00:00:00')).getTime()+(cur_time-start_time));
+		time_inner=new Date(elap);
 		show_time();
 	}
   $('[data-toggle="tooltip"]').tooltip();
@@ -217,17 +242,50 @@ $(function(){
 	}
     }
 
+    function show_sec(field, sec){
+	    var time_str=  sec.toString();
+	    // var time_str=  sec;
+	    // time_str = 'abcd';
+	    $(field).html(time_str);
+    }
+
+    function convertfldsec(field){
+	var minsec_ary = $(field).val().split(':');
+	var sec = Number(minsec_ary[0])*60 + Number(minsec_ary[1]);
+	return sec;
+    }
+
 
     $.timer(100,function(timer){
 	resize_display();
 	if($('.nav li#start').hasClass('active')){
 	    update_time();
-	    var stm = start_time.getTime();
-	    var cur_time= new Date();
+	    // var stm = start_time.getTime();
+	    var cur_time= Date.now()/1000;
+	    // var cur_time= (new Date().getTime()-0);
+	    var time11;
+
+	    if(last_time == null){
+		// Date() sets w/ TimeZone (as set by environment) and .getTime returns UTC.
+		// time11 = (new Date(1970,1,1, 00, $('#time1').val() )).getTime()+0; 
+    		time1 = convertfldsec('#time1') + start_time/1000;
+    		time2 = convertfldsec('#time2') + start_time/1000;
+    		time3 = convertfldsec('#time3') + start_time/1000;
+	    }
 	    if(last_time != null){
-		var time1 = new Date(stm+((new Date('2011/1/1 00:'+$('#time1').val()))-time2011 ));
-		var time2 = new Date(stm+((new Date('2011/1/1 00:'+$('#time2').val()))-time2011 ));
-		var time3 = new Date(stm+((new Date('2011/1/1 00:'+$('#time3').val()))-time2011 ));
+		// var time1 = new Date(1970,1,1, 00, $('#time1').val() ).getTime() + start_time;
+		// var time2 = new Date(1970,1,1, 00, $('#time2').val() ).getTime() + start_time;
+		// var time3 = new Date(1970,1,1, 00, $('#time3').val() ).getTime() + start_time;
+		// var time1 = new Date(stm+((new Date('2011/1/1 00:'+$('#time1').val()))-time2011 ));
+		// var time2 = new Date(stm+((new Date('2011/1/1 00:'+$('#time2').val()))-time2011 ));
+		// var time3 = new Date(stm+((new Date('2011/1/1 00:'+$('#time3').val()))-time2011 ));
+
+		
+		// console.log(cur_time);
+		// console.log(last_time);
+		// console.log(time1);
+		show_sec('#cur_sec', cur_time);
+		show_sec('#time1sec', time1);
 
 		if((last_time < time1 && time1 <= cur_time) || (last_time==time1 && cur_time==time1)){
 			changePhaseClass('1');
