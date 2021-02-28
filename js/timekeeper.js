@@ -222,13 +222,12 @@ $(function(){
 	resize_display();
 	if($('.nav li#start').hasClass('active')){
 	    update_time();
-
+	    var stm = start_time.getTime();
 	    var cur_time= new Date();
 	    if(last_time != null){
-		// var time1 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time1').val()))-(new Date('2011/1/1 00:00:00'))));
-		var time1 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time1').val()))-time2011 ));
-		var time2 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time2').val()))-time2011 ));
-		var time3 = new Date(start_time.getTime()+((new Date('2011/1/1 00:'+$('#time3').val()))-time2011 ));
+		var time1 = new Date(stm+((new Date('2011/1/1 00:'+$('#time1').val()))-time2011 ));
+		var time2 = new Date(stm+((new Date('2011/1/1 00:'+$('#time2').val()))-time2011 ));
+		var time3 = new Date(stm+((new Date('2011/1/1 00:'+$('#time3').val()))-time2011 ));
 
 		if((last_time < time1 && time1 <= cur_time) || (last_time==time1 && cur_time==time1)){
 			changePhaseClass('1');
