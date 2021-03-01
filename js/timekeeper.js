@@ -30,8 +30,8 @@ $(function(){
     $('#time2').val('20:00');
     $('#time3').val('25:00');
     $('#info').html("Click to edit this message.");
-    $('#cur_sec').html('1000000000');
-    $('#time1sec').html('1000000000');
+    $('#cur_sec').html('&nbsp;');
+    $('#time1sec').html('&nbsp;');
 
     var time_inner;
     var time1;
@@ -263,7 +263,7 @@ $(function(){
         var wnd=window;
 	// var flash = document.timerSetting.flashbkgnd.checked;
 	var flash = true;
-        document.timerSetting.flashColor.value = "#FFAAAA";
+        // document.timerSetting.flashColor.value = "#FFAAAA";
 
 	if (flash) {
 	    // $("#time").css('animation', "colorchange2 0.4s 2");
@@ -341,8 +341,8 @@ $(function(){
 		// console.log(cur_time);
 		// console.log(last_time);
 		// console.log(time1);
-		show_sec('#cur_sec', cur_time);
-		show_sec('#time1sec', time1);
+		// show_sec('#cur_sec', cur_time);
+		// show_sec('#time1sec', time1);
 
 		if((last_time < time1 && time1 <= cur_time) || (last_time==time1 && cur_time==time1)){
 			changePhaseClass('1');
@@ -359,6 +359,7 @@ $(function(){
 			audio_chime2.play();
 			$("#time").css('animation', "colorchange2 0.8s 3");
 			flashBackground();
+			$("#time").css('backgroundColor', "#ffffaa");
 
 		}
 
@@ -368,6 +369,7 @@ $(function(){
 			audio_chime3.play();
 			$("#time").css('animation', "colorchange3 0.8s 3");
 			flashBackground();
+			$("#time").css('backgroundColor', "#ff8888");
 		}
 
 	    }
