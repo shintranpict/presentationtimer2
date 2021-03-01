@@ -366,7 +366,7 @@ $(function(){
 			changePhaseClass('3');
 			audio_chime3.currentTime = 0;
 			audio_chime3.play();
-			$("#time").css('animation', "colorchange3 0.8s 3");
+			$("#time").css('animation', "colorchange3 0.8s 6");
 			flashBackground();
 			$("#time").css('backgroundColor', "#ff8888");
 		}
