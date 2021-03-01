@@ -1,4 +1,14 @@
-@keyframes colorchange {
+@keyframes colorchange1 {
+  0% { background: white }
+  100% { background: green }
+}
+
+@keyframes colorchange2 {
+  0% { background: white }
+  100% { background: yellow }
+}
+
+@keyframes colorchange3 {
   0% { background: yellow }
   100% { background: red }
 }
@@ -14,7 +24,7 @@ div#flashbody{
 
 .flash {
 	animation-name: Flash;
-	animation: colorchange 1s;
+	animation: colorchange1 1s;
 //	animation-duration: 0.4s;
 //	animation-timing-function: linear;
 	animation-iteration-count: 2;
