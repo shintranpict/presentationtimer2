@@ -23,7 +23,6 @@ THE SOFTWARE.
 */
 
 var time2011 = new Date('2011/1/1 00:00:00');
-var time_inner = new Date('2011/1/1 00:00:00');
 
 $(function(){
     var loadedcss = '';
@@ -34,6 +33,7 @@ $(function(){
     $('#cur_sec').html('1000000000');
     $('#time1sec').html('1000000000');
 
+    var time_inner;
     var time1;
     var time2;
     var time3;
@@ -131,13 +131,17 @@ $(function(){
 		$('#state').html('STANDBY');
 		changeStateClass('standby');
 		changePhaseClass('0');
-		time_inner=(new Date('2011/1/1 00:00:00'));
+		time_inner=0;
+		// time_inner=(new Date('2011/1/1 00:00:00'));
 		show_time();
 	});
 	changeStateClass('standby');
 	changePhaseClass('0');
 	// var start_time=new Date();
 	var start_time = new Date().getTime();
+	var start_time0 = start_time;
+	var sleeped_at = start_time;
+	var sleeped = 0;
 	var last_time;
 	$('.nav #start').click(function (event){
 		event.preventDefault();
@@ -148,7 +152,8 @@ $(function(){
 		$('.nav li#start').addClass('active');
 		$('#state').html('');
 		changeStateClass('start');
-		start_time = new Date().getTime();
+		sleeped = sleeped_at - start_time;
+		start_time = new Date().getTime()-sleeped;
 		// start_time = new Date((new Date()).getTime() - (time_inner-(new Date('2011/1/1 00:00:00'))));
 		last_time = null;
 		audio_chime1.load();
@@ -171,6 +176,7 @@ $(function(){
 		update_time();
 		$('#state').html('PAUSED');
 		changeStateClass('paused');
+		sleeped_at = new Date().getTime();
 	});
 
 	function resize_display() {
@@ -212,9 +218,18 @@ $(function(){
 	});
 
 	function show_time(){
-		var time_str= ('00' +  time_inner.getMinutes()   ).slice(-2) + ':'
-					+ ('00' +  time_inner.getSeconds() ).slice(-2);
-		$('#time').html(time_str);
+	    var scale = 1000;
+	    scale = 100;
+	    var totalseconds = Math.floor(time_inner/scale);
+	    var min = Math.floor(totalseconds/60);
+	    var sec = totalseconds-min*60;
+	    sec = totalseconds;
+	    console.log(sec);
+	    // console.log(totalseconds);
+	    var time_str= min + ':' + ('00' +  sec ).slice(-2);
+	    // var time_str= ('00' +  time_inner.getMinutes()   ).slice(-2) + ':'
+	    // 			+ ('00' +  time_inner.getSeconds() ).slice(-2);
+	    $('#time').html(time_str);
 	}
 
 	function update_time(){
@@ -222,7 +237,8 @@ $(function(){
 		var cur_time = new Date().getTime();
 		var elap = cur_time - start_time;
 		// var e=new Date((new Date('2011/1/1 00:00:00')).getTime()+(cur_time-start_time));
-		time_inner=new Date(elap);
+		// time_inner=new Date(elap);
+		time_inner=elap;
 		show_time();
 	}
   $('[data-toggle="tooltip"]').tooltip();
