@@ -239,7 +239,7 @@ $(function(){
 	    var min = Math.floor(totalseconds/60);
 	    var sec = totalseconds-min*60;
 	    // console.log(sec);
-	    console.log(totalseconds);
+	    // console.log(totalseconds);
 	    var time_str= min + ':' + ('00' +  sec ).slice(-2);
 	    $('#time').html(time_str);
 	}
