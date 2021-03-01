@@ -265,16 +265,22 @@ $(function(){
         document.timerSetting.flashColor.value = "#FFAAAA";
 
 	if (flash) {
-	    $("#time").css('animation', "colorchange2 1s 2");
-	    $("#time").css('animationPlayState', "running");
-	    flashstarted_at = Date.now();
+	    // $("#time").css('animation', "colorchange2 1s 2");
+	    // $("#time").css('animationPlayState', "running");
+	    // flashstarted_at = Date.now();
 
 	    // $("#time").animate({backgroundColor: "#99ccff"}, 1000);
-//	    $("#time").animate({
-//		backgroundColor: "#99ccff",
-//		  color: "#000",
-//		  // width: 240
-//		}, 500 );
+	    $("#time").animate({
+		backgroundColor: "#99ccff",
+		color: "#000",
+		// width: 240
+		}, {
+		   duration: 2000,
+		    animationIterationCount: 2,
+		   complete: function() {
+		    $("#time").css('backgroundColor', "white");
+		   }
+		});
 
 //	    wnd.document.getElementById("time").className = "flashbase";
 //	    wnd.requestAnimationFrame(function(tm) {
