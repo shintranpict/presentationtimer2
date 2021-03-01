@@ -232,10 +232,10 @@ $(function(){
 		audio_chime1.play();
 	});
 
+	var tmscale = 1000;
+	tmscale = 100;
 	function show_time(time_inner){
-	    var scale = 1000;
-	    scale = 100;
-	    var totalseconds = Math.floor(time_inner/scale);
+	    var totalseconds = Math.floor(time_inner/tmscale);
 	    var min = Math.floor(totalseconds/60);
 	    var sec = totalseconds-min*60;
 	    // console.log(sec);
@@ -309,16 +309,16 @@ $(function(){
 	if($('.nav li#start').hasClass('active')){
 	    update_time();
 	    // var stm = start_time.getTime();
-	    var cur_time= Date.now()/1000;
+	    var cur_time= Date.now()/tmscale;
 	    // var cur_time= (new Date().getTime()-0);
 	    var time11;
 
 	    if(last_time == null){
 		// Date() sets w/ TimeZone (as set by environment) and .getTime returns UTC.
 		// time11 = (new Date(1970,1,1, 00, $('#time1').val() )).getTime()+0; 
-    		time1 = convertfldsec('#time1') + start_time/1000;
-    		time2 = convertfldsec('#time2') + start_time/1000;
-    		time3 = convertfldsec('#time3') + start_time/1000;
+    		time1 = convertfldsec('#time1') + start_time/tmscale;
+    		time2 = convertfldsec('#time2') + start_time/tmscale;
+    		time3 = convertfldsec('#time3') + start_time/tmscale;
 		$("#time").css('animation', "colorchange0 0.1s 1"); // dirty hack. since it doesn't reset animation sometimes. 
 		flashBackground();
 	    }
