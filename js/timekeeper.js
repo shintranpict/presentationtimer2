@@ -238,9 +238,8 @@ $(function(){
 	    var totalseconds = Math.floor(time_inner/scale);
 	    var min = Math.floor(totalseconds/60);
 	    var sec = totalseconds-min*60;
-	    sec = totalseconds;
-	    console.log(sec);
-	    // console.log(totalseconds);
+	    // console.log(sec);
+	    console.log(totalseconds);
 	    var time_str= min + ':' + ('00' +  sec ).slice(-2);
 	    $('#time').html(time_str);
 	}
@@ -348,7 +347,7 @@ $(function(){
 			changePhaseClass('1');
 			audio_chime1.currentTime = 0;
 			audio_chime1.play();
-			$("#time").css('animation', "colorchange3 0.8s 3");
+			$("#time").css('animation', "colorchange1 0.8s 3");
 			flashBackground();
 		}
 
