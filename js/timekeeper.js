@@ -265,29 +265,30 @@ $(function(){
         document.timerSetting.flashColor.value = "#FFAAAA";
 
 	if (flash) {
-	    // $("#time").css('animation', "colorchange2 1s 2");
+	    // $("#time").css('animation', "colorchange2 0.4s 2");
 	    // $("#time").css('animationPlayState', "running");
 	    // flashstarted_at = Date.now();
 
 	    // $("#time").animate({backgroundColor: "#99ccff"}, 1000);
-	    $("#time").animate({
-		backgroundColor: "#99ccff",
-		color: "#000",
-		// width: 240
-		}, {
-		   duration: 2000,
-		    animationIterationCount: 2,
-		   complete: function() {
-		    $("#time").css('backgroundColor', "white");
-		   }
-		});
 
-//	    wnd.document.getElementById("time").className = "flashbase";
-//	    wnd.requestAnimationFrame(function(tm) {
-//		wnd.requestAnimationFrame(function(tm) {
-//		wnd.document.getElementById("time").className = "flashbase flash";
+//	    $("#time").animate({
+//		backgroundColor: "#99ccff",
+//		color: "#000",
+//		// width: 240
+//		}, {
+//		   duration: 2000,
+//		    animationIterationCount: 2,
+//		   complete: function() {
+//		    $("#time").css('backgroundColor', "white");
+//		   }
 //		});
-//	    });
+
+	    wnd.document.getElementById("time").className = "flashbase";
+	    wnd.requestAnimationFrame(function(tm) {
+		wnd.requestAnimationFrame(function(tm) {
+		wnd.document.getElementById("time").className = "flashbase flash";
+		});
+	    });
 	}
     }
 
@@ -329,12 +330,12 @@ $(function(){
 		// var time2 = new Date(stm+((new Date('2011/1/1 00:'+$('#time2').val()))-time2011 ));
 		// var time3 = new Date(stm+((new Date('2011/1/1 00:'+$('#time3').val()))-time2011 ));
 
-		if ($("#time").css('animationPlayState') ==  "running") {
-		    if (Date.now() - flashstarted_at > 2000) {
-			$("#time").css('animationPlayState', "paused");
-			// console.log("animation Paused.");
-		    }
-		}
+//		if ($("#time").css('animationPlayState') ==  "running") {
+//		    if (Date.now() - flashstarted_at > 2000) {
+//			$("#time").css('animationPlayState', "paused");
+//			// console.log("animation Paused.");
+//		    }
+//		}
 		
 		// console.log(cur_time);
 		// console.log(last_time);
@@ -346,7 +347,7 @@ $(function(){
 			changePhaseClass('1');
 			audio_chime1.currentTime = 0;
 			audio_chime1.play();
-			$('.flash').css('animation', "colorchange2 1s;");
+			$("#time").css('animation', "colorchange1 0.8s 3");
 			flashBackground();
 		}
 
@@ -354,7 +355,7 @@ $(function(){
 			changePhaseClass('2');
 			audio_chime2.currentTime = 0;
 			audio_chime2.play();
-			$('.flash').css('animation', "colorchange2 1s;");
+			$("#time").css('animation', "colorchange2 0.8s 3");
 			flashBackground();
 
 		}
@@ -363,7 +364,7 @@ $(function(){
 			changePhaseClass('3');
 			audio_chime3.currentTime = 0;
 			audio_chime3.play();
-			$('.flash').css('animation', "colorchange3 1s;");
+			$("#time").css('animation', "colorchange3 0.8s 3");
 			flashBackground();
 		}
 
