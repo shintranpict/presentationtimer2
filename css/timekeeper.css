@@ -80,7 +80,7 @@ html,body{
 .clockdisplay {
 }
 #display{
-	float: none;
+	// float: none;
 	margin: auto;
 	color: white;
 	width:100%;
@@ -93,7 +93,7 @@ html,body{
 	color: #0000aa;
 	background: #ffdddd;
 	width:100%;
-	position: absolute;
+	// position: absolute;
 	text-align: center;
 }
 
@@ -102,7 +102,7 @@ html,body{
 	color: orange;
         // background: #55ff88;
 	width:100%;
-	position: absolute;
+	// position: absolute;
 	text-align: center;
 }
 
@@ -111,9 +111,18 @@ html,body{
 	color: black;
         // background: #55ff88;
 	width:100%;
-	position: absolute;
+	// position: absolute;
 	text-align: center;
 }
+#cur_sec{
+	font-weight: bold;
+	color: blue;
+        // background: #55ff88;
+	width:100%;
+	// position: absolute;
+	text-align: center;
+}
+
 .form-control{
 	background:#444;
 	color:rgba(255, 255, 255, 0.3);
