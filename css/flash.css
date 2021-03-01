@@ -1,18 +1,24 @@
+@keyframes colorchange {
+  0% { background: yellow }
+  100% { background: red }
+}
+
 div#flashbody{
 	position: relative;
-	margin: 0;
+	margin: 5;
 	padding: 0;
-	/*border: solid;*/
+	border: 6px solid green;
 }
 
 .flashbase {}
 
 .flash {
 	animation-name: Flash;
-	animation-duration: 0.4s;
-	animation-timing-function: linear;
-	animation-iteration-count: 4;
-	animation-direction: normal;
+	animation: colorchange 1s;
+//	animation-duration: 0.4s;
+//	animation-timing-function: linear;
+	animation-iteration-count: 2;
+//	animation-direction: normal;
 }
 
 

@@ -257,10 +257,10 @@ $(function(){
         document.timerSetting.flashColor.value = "#FFAAAA";
 
 	if (flash) {
-	    wnd.document.getElementById("flashbody").className = "flashbase";
-	    wnd.requestAnimationFrame(function(time) {
-		wnd.requestAnimationFrame(function(time) {
-		wnd.document.getElementById("flashbody").className = "flashbase flash";
+	    wnd.document.getElementById("time").className = "flashbase";
+	    wnd.requestAnimationFrame(function(tm) {
+		wnd.requestAnimationFrame(function(tm) {
+		wnd.document.getElementById("time").className = "flashbase flash";
 		});
 	    });
 	}
