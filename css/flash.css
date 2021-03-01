@@ -1,6 +1,11 @@
-@keyframes colorchange1 {
+@keyframes colorchange0 {
   0% { background: white }
-  100% { background: green }
+  100% { background: white }
+}
+
+@keyframes colorchange1 {
+  0% { background: #ffa0ff }
+  100% { background: #a0ffa0 }
 }
 
 @keyframes colorchange2 {
@@ -9,7 +14,7 @@
 }
 
 @keyframes colorchange3 {
-  0% { background: yellow }
+  0% { background: #808f0a }
   100% { background: red }
 }
 

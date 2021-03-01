@@ -26,10 +26,10 @@ var time2011 = new Date('2011/1/1 00:00:00');
 
 $(function(){
     var loadedcss = '';
-    $('#time1').val('15:00');
-    $('#time2').val('20:00');
-    $('#time3').val('25:00');
-    $('#info').html("Click to edit this message.");
+    $('#time1').val('5:00');
+    $('#time2').val('9:00');
+    $('#time3').val('10:00');
+    $('#info').html("&nbsp;");
     $('#cur_sec').html('&nbsp;');
     $('#time1sec').html('&nbsp;');
 
@@ -320,6 +320,8 @@ $(function(){
     		time1 = convertfldsec('#time1') + start_time/1000;
     		time2 = convertfldsec('#time2') + start_time/1000;
     		time3 = convertfldsec('#time3') + start_time/1000;
+		$("#time").css('animation', "colorchange0 0.1s 1"); // dirty hack. since it doesn't reset animation sometimes. 
+		flashBackground();
 	    }
 	    if(last_time != null){
 		// var time1 = new Date(1970,1,1, 00, $('#time1').val() ).getTime() + start_time;
@@ -346,7 +348,7 @@ $(function(){
 			changePhaseClass('1');
 			audio_chime1.currentTime = 0;
 			audio_chime1.play();
-			$("#time").css('animation', "colorchange1 0.8s 3");
+			$("#time").css('animation', "colorchange3 0.8s 3");
 			flashBackground();
 		}
 
