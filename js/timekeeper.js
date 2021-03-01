@@ -33,7 +33,6 @@ $(function(){
     $('#cur_sec').html('&nbsp;');
     $('#time1sec').html('&nbsp;');
 
-    var time_inner;
     var time1;
     var time2;
     var time3;
@@ -135,17 +134,14 @@ $(function(){
 		$('#state').html('STANDBY');
 		changeStateClass('standby');
 		changePhaseClass('0');
-		time_inner=0;
-		// time_inner=(new Date('2011/1/1 00:00:00'));
 		$("#time").css('backgroundColor', "white");
-		show_time();
+		show_time(0);
 	});
 	changeStateClass('standby');
 	changePhaseClass('0');
 	// var start_time=new Date();
 	var last_time;
-	$('.nav #start').click(function (event){
-		event.preventDefault();
+	function resumeClock() {
 		if($('.nav li#start').hasClass('active')){
 			return;
 		}
@@ -160,12 +156,17 @@ $(function(){
 		$('#state').html('&nbsp;');
 		changeStateClass('start');
 		start_time = new Date().getTime()-sleeped;
-		// start_time = new Date((new Date()).getTime() - (time_inner-(new Date('2011/1/1 00:00:00'))));
 		last_time = null;
 		audio_chime1.load();
 		audio_chime2.load();
 		audio_chime3.load();
+	}
+
+	$('.nav #start').click(function (event){
+		event.preventDefault();
+		resumeClock();
 	});
+
 
 	$('.nav #pause').click(function (event){
 		event.preventDefault();
@@ -174,7 +175,8 @@ $(function(){
 		}
 
 		if($('.nav li#pause').hasClass('active')){
-			return;
+		    resumeClock();
+		    return;
 		}
 
 		$('.nav li').removeClass('active');
@@ -230,7 +232,7 @@ $(function(){
 		audio_chime1.play();
 	});
 
-	function show_time(){
+	function show_time(time_inner){
 	    var scale = 1000;
 	    scale = 100;
 	    var totalseconds = Math.floor(time_inner/scale);
@@ -240,8 +242,6 @@ $(function(){
 	    console.log(sec);
 	    // console.log(totalseconds);
 	    var time_str= min + ':' + ('00' +  sec ).slice(-2);
-	    // var time_str= ('00' +  time_inner.getMinutes()   ).slice(-2) + ':'
-	    // 			+ ('00' +  time_inner.getSeconds() ).slice(-2);
 	    $('#time').html(time_str);
 	}
 
@@ -250,9 +250,7 @@ $(function(){
 		var cur_time = new Date().getTime();
 		var elap = cur_time - start_time;
 		// var e=new Date((new Date('2011/1/1 00:00:00')).getTime()+(cur_time-start_time));
-		// time_inner=new Date(elap);
-		time_inner=elap;
-		show_time();
+		show_time(elap);
 	}
   $('[data-toggle="tooltip"]').tooltip();
 
