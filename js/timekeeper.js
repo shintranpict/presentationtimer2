@@ -255,6 +255,7 @@ $(function(){
 	}
   $('[data-toggle="tooltip"]').tooltip();
 
+    var flashstarted_at = Date.now();
 
 //// C.F : https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Animations/Tips
     function flashBackground(){
@@ -266,6 +267,7 @@ $(function(){
 	if (flash) {
 	    $("#time").css('animation', "colorchange2 1s 2");
 	    $("#time").css('animationPlayState', "running");
+	    flashstarted_at = Date.now();
 
 	    // $("#time").animate({backgroundColor: "#99ccff"}, 1000);
 //	    $("#time").animate({
@@ -321,6 +323,12 @@ $(function(){
 		// var time2 = new Date(stm+((new Date('2011/1/1 00:'+$('#time2').val()))-time2011 ));
 		// var time3 = new Date(stm+((new Date('2011/1/1 00:'+$('#time3').val()))-time2011 ));
 
+		if ($("#time").css('animationPlayState') ==  "running") {
+		    if (Date.now() - flashstarted_at > 2000) {
+			$("#time").css('animationPlayState', "paused");
+			// console.log("animation Paused.");
+		    }
+		}
 		
 		// console.log(cur_time);
 		// console.log(last_time);
