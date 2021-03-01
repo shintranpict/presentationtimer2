@@ -90,8 +90,8 @@ html,body{
 #time{
 	font-style: monospace;
 	font-weight: bold;
-	color: blue;
-     background: #ee6688;
+	color: #0000aa;
+	background: #ffdddd;
 	width:100%;
 	position: absolute;
 	text-align: center;

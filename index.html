@@ -37,7 +37,7 @@
         </ul>
     </div><!-- /.container-fluid -->
   </nav>
-  <div id=="flashbody2">
+  <div class=flashbase id="flashbody">
   <div class="clockdisplay" 
 	<div id="time">
 		00:00
@@ -49,12 +49,20 @@
 		STANDBY
 	</div>
   </div><!-- class="clockdisplay" -->
-  </div><!-- id=="flashbody2" -->
+  </div><!-- id="flashbody2" -->
 	<div id="cur_sec">
 		00000000000000000000
 	</div>
 	<div id="time1sec">
 		00000000000000000000
 	</div>
+  <form name="timerSetting">
+  <dl>
+  <dt>ベルに連動して背景色をフラッシュする<input type="checkbox" id = "flashbkgnd" name = "flashbkgnd" /></dt>
+<dd>フラッシュ色:<input value="#FFAAAA" class = "color {hash:true}" id="flashColor" name="flashColor" />
+</dl>
+
+  </form> <!-- name="timerSetting" -->
+
 </body>
 </html>

@@ -124,6 +124,10 @@ $(function(){
 		$('body').addClass('phase-'+s);
 	};
 
+	var start_time = new Date().getTime();
+	var sleeped_at = start_time;
+	var sleeped = 0;
+
 	$('.nav #standby').click(function (event){
 		event.preventDefault();
 		$('.nav li').removeClass('active');
@@ -138,21 +142,22 @@ $(function(){
 	changeStateClass('standby');
 	changePhaseClass('0');
 	// var start_time=new Date();
-	var start_time = new Date().getTime();
-	var start_time0 = start_time;
-	var sleeped_at = start_time;
-	var sleeped = 0;
 	var last_time;
 	$('.nav #start').click(function (event){
 		event.preventDefault();
 		if($('.nav li#start').hasClass('active')){
 			return;
 		}
+
+		sleeped = sleeped_at - start_time;
+		if($('.nav li#standby').hasClass('active')){
+		    sleeped = 0;
+		}
+
 		$('.nav li').removeClass('active');
 		$('.nav li#start').addClass('active');
 		$('#state').html('');
 		changeStateClass('start');
-		sleeped = sleeped_at - start_time;
 		start_time = new Date().getTime()-sleeped;
 		// start_time = new Date((new Date()).getTime() - (time_inner-(new Date('2011/1/1 00:00:00'))));
 		last_time = null;
@@ -247,7 +252,10 @@ $(function(){
 //// C.F : https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Animations/Tips
     function flashBackground(){
         var wnd=window;
-	var flash = document.timerSetting.flashbkgnd.checked;
+	// var flash = document.timerSetting.flashbkgnd.checked;
+	var flash = true;
+        document.timerSetting.flashColor.value = "#FFAAAA";
+
 	if (flash) {
 	    wnd.document.getElementById("flashbody").className = "flashbase";
 	    wnd.requestAnimationFrame(function(time) {
@@ -307,6 +315,7 @@ $(function(){
 			changePhaseClass('1');
 			audio_chime1.currentTime = 0;
 			audio_chime1.play();
+			flashBackground();
 		}
 
 		if((last_time < time2 && time2 <= cur_time) || (last_time==time2 && cur_time==time2)){
