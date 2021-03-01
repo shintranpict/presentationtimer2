@@ -4,7 +4,7 @@
 }
 
 @keyframes colorchange2 {
-  0% { background: white }
+  0% { background: #880088 }
   100% { background: yellow }
 }
 

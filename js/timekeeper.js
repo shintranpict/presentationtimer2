@@ -137,6 +137,7 @@ $(function(){
 		changePhaseClass('0');
 		time_inner=0;
 		// time_inner=(new Date('2011/1/1 00:00:00'));
+		$("#time").css('backgroundColor', "white");
 		show_time();
 	});
 	changeStateClass('standby');
@@ -352,6 +353,7 @@ $(function(){
 		}
 
 		if((last_time < time2 && time2 <= cur_time) || (last_time==time2 && cur_time==time2)){
+			$("#time").css('backgroundColor', "violet");
 			changePhaseClass('2');
 			audio_chime2.currentTime = 0;
 			audio_chime2.play();
