@@ -233,7 +233,7 @@ $(function(){
 	});
 
 	var tmscale = 1000;
-	tmscale = 100;
+	// tmscale = 100;
 	function show_time(time_inner){
 	    var totalseconds = Math.floor(time_inner/tmscale);
 	    var min = Math.floor(totalseconds/60);
