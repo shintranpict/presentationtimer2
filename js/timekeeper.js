@@ -264,8 +264,9 @@ $(function(){
         document.timerSetting.flashColor.value = "#FFAAAA";
 
 	if (flash) {
-	    document.getElementById("time").style.animationIterationCount = "2"
-	    document.getElementById("time").style.animation= "colorchange3 1s"
+	    // document.getElementById("time").style.animationIterationCount = "2"
+	    // document.getElementById("time").style.animationDuration = "0.8s"
+	    document.getElementById("time").style.animation= "colorchange2 1s 2"
 	    document.getElementById("time").style.animationPlayState = "running";
 	    // $("#time").animate({backgroundColor: "#99ccff"}, 1000);
 //	    $("#time").animate({
