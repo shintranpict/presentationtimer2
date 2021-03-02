@@ -37,6 +37,14 @@ $(function(){
     var time2;
     var time3;
 
+  $('[data-toggle="tooltip"]').tooltip();
+
+  const audio_chime0 = new Audio();
+  const audio_chime1 = new Audio();
+  const audio_chime2 = new Audio();
+  const audio_chime3 = new Audio();
+
+
   function getHashParams() {
     var hashParams = {};
     var e,
@@ -104,10 +112,9 @@ $(function(){
 	    }
 	});
 
-	var audio_chime1,audio_chime2,audio_chime3;
-	audio_chime1 = new Audio("./wav/chime1.wav");
-	audio_chime2 = new Audio("./wav/chime2.wav");
-	audio_chime3 = new Audio("./wav/chime3.wav");
+	// audio_chime1 = new Audio("./wav/chime1.wav");
+	// audio_chime2 = new Audio("./wav/chime2.wav");
+	// audio_chime3 = new Audio("./wav/chime3.wav");
 
 	function changeStateClass(s) {
 		$('body').removeClass(function(index, className) {
@@ -227,9 +234,14 @@ $(function(){
 
 	$('#soundcheck').click(function (event){
 		event.preventDefault();
+		// onClick of first interaction on page before I need the sounds
+		audio_chime0.play();
+
+		// later on when you actually want to play a sound at any point without user interaction
+		audio_chime1.src = "./wav/chime1.wav";
 		audio_chime1.load();
-		audio_chime1.currentTime = 0;
 		audio_chime1.play();
+		audio_chime1.currentTime = 0;
 	});
 
 	var tmscale = 1000;
@@ -251,7 +263,6 @@ $(function(){
 		// var e=new Date((new Date('2011/1/1 00:00:00')).getTime()+(cur_time-start_time));
 		show_time(elap);
 	}
-  $('[data-toggle="tooltip"]').tooltip();
 
     var flashstarted_at = Date.now();
 
@@ -304,9 +315,18 @@ $(function(){
     }
 
 
+    var initialized = false;
     $.timer(100,function(timer){
 	resize_display();
 	if($('.nav li#start').hasClass('active')){
+	    if (!initialized) {
+	        // for iOS.
+		// set up audio at first interaction of the page before using real audio.
+		// Bug of Chrome: a playing event is queued to playing list without sound file.
+		audio_chime0.play();
+		audio_chime0.currentTime = 0;
+		initialized = true;
+	    }
 	    update_time();
 	    // var stm = start_time.getTime();
 	    var cur_time= Date.now()/tmscale;
@@ -345,7 +365,16 @@ $(function(){
 
 		if((last_time < time1 && time1 <= cur_time) || (last_time==time1 && cur_time==time1)){
 			changePhaseClass('1');
+			// for iOS.
+			// set up audio.
+			// audio_chime1.src = "./wav/chime3.wav";
+			// audio_chime1.src = "./wav/button82.mp3";
+			audio_chime0.src = "./wav/empty.wav";
+			audio_chime1.src = "./wav/chime1.wav";
+			audio_chime2.src = "./wav/chime2.wav";
+			audio_chime3.src = "./wav/chime3.wav";
 			audio_chime1.currentTime = 0;
+			// Bug of Chrome: it is queued a playing event and plays two sounds simultaneously at first visiting here, as if longer music has priority.
 			audio_chime1.play();
 			$("#time").css('animation', "colorchange1 0.8s 3");
 			flashBackground();
