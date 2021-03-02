@@ -3,7 +3,7 @@ HTML5 and JavaScript based timer with notification chime for academic conference
 
 ### How to Use?
 Access to
-https://tranpict.gitlab.io/presentationtimer/
+https://tranpict.gitlab.io/presentationtimer2/
 
 It is based on the following URL and added functionality to flash at alarms. Also, core logic was refactored a bit.
 http://maruta.github.io/timekeeper/  
@@ -26,11 +26,11 @@ certain version of Chrome (and maybe depend on settings) does not permit to upda
 
 ### How to Customize Appearance?
 
- * Edit presentationtimer/public/theme/default.css
+ * Edit presentationtimer2/public/theme/default.css
  * By using class added to the body tag, the appearance can be changed according to the phase and state of the timer.
  * Theme can be specified via URL as  
-   https://tranpict.gitlab.io/presentationtimer/#th=example  
-   In this case, presentationtimer/public/theme/example.css will be loaded in place of default.css.
+   https://tranpict.gitlab.io/presentationtimer2/#th=example  
+   In this case, presentationtimer2/public/theme/example.css will be loaded in place of default.css.
 
 ### License
 Presentationtimer(Time Keeper2) is open-sourced software licensed under The MIT License.
